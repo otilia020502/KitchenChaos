@@ -30,6 +30,9 @@ public class Player : MonoBehaviour
 
         // Multiply moveSpeed with Time.deltaTime first for better performance
         transform.position += moveDir * (moveSpeed * Time.deltaTime);
-        Debug.Log(Time.deltaTime);
+        float rotateSpeed = 10f;
+        
+        transform.forward=Vector3.Slerp(transform.forward, moveDir, Time.deltaTime*rotateSpeed) ;
+        
     }
 }
