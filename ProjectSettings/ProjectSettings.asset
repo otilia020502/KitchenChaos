@@ -152,7 +152,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.DefaultCompany.KitchenChaosv1
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -706,7 +707,7 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
-    Collab: 1
+    Collab: 0
     UNet: 1
   luminIcon:
     m_Name: 
@@ -724,7 +725,7 @@ PlayerSettings:
   embeddedLinuxEnableGamepadInput: 1
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 0
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: 5b350277-e6cd-41d5-87af-cdabc0ba9c30
   framebufferDepthMemorylessMode: 0
