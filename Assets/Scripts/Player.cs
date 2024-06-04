@@ -8,11 +8,69 @@ public class Player : MonoBehaviour
     [SerializeField] private float playerSize = .7f;
     [SerializeField]float rotateSpeed = 10f;
     [SerializeField]float playerRadius = .7f;
-    
+    [SerializeField] private LayerMask countersLayerMask;
+    private Vector3 lastInteractionDir;
+    private ClearCounter selectedCounter;
+    private void Start()
+    {
+        gameInput.OnInteractAction += GameInput_OnInteraction;
+    }
 
+    private void GameInput_OnInteraction(object sender, System.EventArgs e)
+    {
+        if (selectedCounter != null)
+        {
+            selectedCounter.Interact();
+        }
+        
+
+    }
     void Update()
     {   
+        HandleMovement();
+        HandleInteractions();
         
+        
+    }
+
+    public bool IsWalking()
+    {
+        return isWalking;
+    }
+
+    private void HandleInteractions()
+    {
+        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
+        Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
+        if (moveDir != Vector3.zero)
+        {
+            lastInteractionDir = moveDir;
+        }
+        float interactDistance = 2f;
+        if (Physics.Raycast(transform.position, lastInteractionDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
+        {
+            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
+            {
+                //has clear counter
+                //clearCounter.Interact();
+                if (clearCounter != selectedCounter)
+                {
+                    selectedCounter = clearCounter;
+                }
+            }
+            else
+            {
+                selectedCounter = null;
+            }
+        }
+        else
+        {
+            selectedCounter = null;
+        }
+       Debug.Log(selectedCounter);
+    }
+    private void HandleMovement()
+    {
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
         float playerHeight = 2f;
@@ -48,11 +106,5 @@ public class Player : MonoBehaviour
         //Debug.Log(canMove);
         isWalking = moveDir != Vector3.zero;
         transform.forward=Vector3.Slerp(transform.forward, moveDir, Time.deltaTime*rotateSpeed) ;
-        
-    }
-
-    public bool IsWalking()
-    {
-        return isWalking;
     }
 }
