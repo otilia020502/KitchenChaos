@@ -5,12 +5,12 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     
-    private const string IS_WALKING = "IsWalking";
+    private const string IsWalking = "IsWalking";
     [SerializeField] private Player player;
-    private Animator animator;
+    private Animator _animator;
     private void Awake()
     {
-        animator = GetComponent<Animator>();
-        animator.SetBool(IS_WALKING,player.IsWalking());
+        _animator = GetComponent<Animator>();
+        _animator.SetBool(IsWalking,player.IsWalking());
     }
 }

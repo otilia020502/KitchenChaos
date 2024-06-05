@@ -13,7 +13,7 @@ public class NewBehaviourScript : MonoBehaviour
 
    private void OnSelectedCounterChanged(object sender, Player.OnSelectedCounterChangedEventArgs e)
    {
-      if (clearCounter == e.selectedCounter)
+      if (clearCounter == e.SelectedCounter)
       {
          Show();
       }
