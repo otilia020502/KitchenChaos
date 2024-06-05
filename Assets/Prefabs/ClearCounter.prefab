@@ -84,6 +84,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Selected
       objectReference: {fileID: 0}
+    - target: {fileID: 4589716710238282922, guid: 0004cb1e11ad014419b943c7da960724, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4589716710238282923, guid: 0004cb1e11ad014419b943c7da960724, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -156,6 +160,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7002736163895471722}
   m_SourcePrefab: {fileID: 100100000, guid: 0004cb1e11ad014419b943c7da960724, type: 3}
+--- !u!1 &3147655825210993928 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8489276541531669327, guid: 0004cb1e11ad014419b943c7da960724, type: 3}
+  m_PrefabInstance: {fileID: 6800787567117512263}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7048330527102978796 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4589716710238282923, guid: 0004cb1e11ad014419b943c7da960724, type: 3}
@@ -178,6 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01b5f08145797a409ce3b42a33f25d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clearCounter: {fileID: -1412404199861253104}
+  selectedCounterVisual: {fileID: 3147655825210993928}
 --- !u!1001 &7158569285304374222
 PrefabInstance:
   m_ObjectHideFlags: 0
