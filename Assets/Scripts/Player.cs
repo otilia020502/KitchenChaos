@@ -49,8 +49,17 @@ public class Player : MonoBehaviour,IKitchenObjectParent
     private void Start()//iau de la altii
     {
         gameInput.OnInteractAction += GameInput_OnInteraction;
+        gameInput.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
     }
+    private void GameInput_OnInteractAlternateAction(object sender, System.EventArgs e)
+    {
+        if (_selectedCounter != null)
+        {
+            _selectedCounter.InteractAlternate(this);
+        }
+        
 
+    }
     private void GameInput_OnInteraction(object sender, System.EventArgs e)
     {
         if (_selectedCounter != null)
@@ -138,10 +147,11 @@ public class Player : MonoBehaviour,IKitchenObjectParent
         var moveDistance = Time.deltaTime* moveSpeed;
         var step = moveDir * moveDistance;
         bool canMove= Physics.CapsuleCast(transform.position, transform.position+Vector3.up * playerHeight, playerRadius,moveDir, moveDistance)==false;
+        
         if (!canMove)
         {//try to move on x axis
             var moveDirX = new Vector3(moveDir.x, 0, 0);
-            bool canMoveX= Physics.CapsuleCast(transform.position, transform.position+Vector3.up * playerHeight, playerRadius,moveDirX, moveDistance)==false;
+            bool canMoveX= moveDir.x !=0 && Physics.CapsuleCast(transform.position, transform.position+Vector3.up * playerHeight, playerRadius,moveDirX, moveDistance)==false;
             if (canMoveX)
             {
                 canMove = true;
@@ -151,7 +161,7 @@ public class Player : MonoBehaviour,IKitchenObjectParent
             if (canMove == false)
             {//try to move on z axis
                 var moveDirZ = new Vector3(0, 0, moveDir.z);
-                bool canMoveZ= Physics.CapsuleCast(transform.position, transform.position+Vector3.up * playerHeight, playerRadius,moveDirZ, moveDistance)==false;
+                bool canMoveZ= moveDir.z !=0 &&Physics.CapsuleCast(transform.position, transform.position+Vector3.up * playerHeight, playerRadius,moveDirZ, moveDistance)==false;
                 if (canMoveZ)
                 {
                     canMove = true;

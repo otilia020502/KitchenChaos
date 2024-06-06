@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using GameObject = UnityEngine.GameObject;
 
 public class NewBehaviourScript : MonoBehaviour
 {
@@ -14,12 +15,30 @@ public class NewBehaviourScript : MonoBehaviour
 
    private void OnSelectedCounterChanged(object sender, Player.OnSelectedCounterChangedEventArgs e)
    {
-      foreach (var selectedVisual in selectedCounterVisual)
+      if (e.SelectedCounter == currentCounter)
       {
-         selectedVisual.SetActive(e.SelectedCounter);
-         
+         Show();
+      }
+      else
+      {
+         Hide();
       }
    }
 
-   
+   private void Show()
+   {
+      foreach (GameObject visualGameObject in selectedCounterVisual)
+      {
+         visualGameObject.SetActive(true);
+      }
+      
+   }
+
+   private void Hide()
+   {
+      foreach (GameObject visualGameObject in selectedCounterVisual)
+      {
+         visualGameObject.SetActive(false);
+      }
+   }
 }

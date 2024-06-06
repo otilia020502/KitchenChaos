@@ -180,8 +180,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01b5f08145797a409ce3b42a33f25d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clearCounter: {fileID: 0}
-  selectedCounterVisual: {fileID: 3524360938776214679}
+  currentCounter: {fileID: 3663904662981575516}
+  selectedCounterVisual:
+  - {fileID: 3524360938776214679}
 --- !u!4 &8833529844251007859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4589716710238282923, guid: 0004cb1e11ad014419b943c7da960724, type: 3}
@@ -247,7 +248,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8160343087803529607, guid: e1ad2a01ef3224a46954bd1f924da9e8, type: 3}
-      insertIndex: -1
+      insertIndex: 0
       addedObject: {fileID: 8833529844251007859}
     - targetCorrespondingSourceObject: {fileID: 8160343087803529607, guid: e1ad2a01ef3224a46954bd1f924da9e8, type: 3}
       insertIndex: -1
