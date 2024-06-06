@@ -159,6 +159,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: CuttingCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 6963916101561841701, guid: e1ad2a01ef3224a46954bd1f924da9e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6963916101561841701, guid: e1ad2a01ef3224a46954bd1f924da9e8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6963916101561841701, guid: e1ad2a01ef3224a46954bd1f924da9e8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8160343087803529607, guid: e1ad2a01ef3224a46954bd1f924da9e8, type: 3}
       propertyPath: m_RootOrder
       value: 0
