@@ -24,7 +24,7 @@ public class DoorAnimator : MonoBehaviour
 
         // Cast a ray to the left
         RaycastHit hit;
-        if (Physics.Raycast(doorPosition, Vector3.left, out hit, detectionRange, playerLayerMask))
+        if (Physics.Raycast(doorPosition, Vector3.left, out hit, detectionRange, playerLayerMask))//cu un obiect(boxxast) sau creez o functie un ontrigger enter on trigger exit
         {
             if (hit.collider.CompareTag("Player"))
             {
