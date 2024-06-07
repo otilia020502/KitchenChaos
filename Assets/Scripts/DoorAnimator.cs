@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class DoorController : MonoBehaviour
+public class DoorAnimator : MonoBehaviour
 {
     public Animator animator; 
     public string openLeftAnimation = "DoorOpensToKitchen"; 
     public string openRightAnimation = "DoorOpensToOtherRoom"; 
     public string closedAnimation = "DoorStaysClosed"; 
-    public Transform player; 
+    public LayerMask playerLayerMask; 
     public float detectionRange = 2f; 
 
     private bool playerIsThere = false;
@@ -20,16 +20,32 @@ public class DoorController : MonoBehaviour
 
     private void DetectPlayer()
     {
-        if (player == null) return;
+        Vector3 doorPosition = transform.position;
 
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        playerIsThere = distanceToPlayer <= detectionRange;
-
-        if (playerIsThere)
+        // Cast a ray to the left
+        RaycastHit hit;
+        if (Physics.Raycast(doorPosition, Vector3.left, out hit, detectionRange, playerLayerMask))
         {
-            Vector3 doorToPlayer = player.position - transform.position;
-            fromKitchen = doorToPlayer.x > 0;
+            if (hit.collider.CompareTag("Player"))
+            {
+                playerIsThere = true;
+                fromKitchen = false;
+                return;
+            }
         }
+
+        // Cast a ray to the right
+        if (Physics.Raycast(doorPosition, Vector3.right, out hit, detectionRange, playerLayerMask))
+        {
+            if (hit.collider.CompareTag("Player"))
+            {
+                playerIsThere = true;
+                fromKitchen = true;
+                return;
+            }
+        }
+
+        playerIsThere = false;
     }
 
     private void PlayDoorAnimation()
