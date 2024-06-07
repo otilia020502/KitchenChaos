@@ -1,10 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class CuttingCounter : BaseCounter
 {
-    
+    public event EventHandler<OnProgressChangedEventArgs> OnProgressChanged;
+
+    public class OnProgressChangedEventArgs : EventArgs
+    {
+        public float progressNormalized;
+    }
+
+    public event EventHandler OnCut ;
     [SerializeField] private CuttingRecipeSO []arrayCuttingRecipeSO;
 
     private int cuttingProgress;
@@ -16,8 +23,17 @@ public class CuttingCounter : BaseCounter
             if (player.HasKitchenObject())
             {
                 //player is carrying something
-                player.GetKitchenObject().SetKitchenObjectParent(this);
-                cuttingProgress = 0;
+                if (HasRecipeWithInput(player.GetKitchenObject().GetKitchenObjectSo()))
+                {//player carrying something that can be cut
+                    player.GetKitchenObject().SetKitchenObjectParent(this);
+                    cuttingProgress = 0;
+                    CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSo());
+                    OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
+                    {
+                        progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
+                    });
+                }
+                
             }
             else
             {
@@ -44,10 +60,16 @@ public class CuttingCounter : BaseCounter
         {
             //there is a kitchen object
             cuttingProgress++;
+            OnCut?.Invoke(this,EventArgs.Empty);
             CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSo());
-            KitchenObjectSo outputKitchenObjectSo = GerOutputForInput(GetKitchenObject().GetKitchenObjectSo());
+            OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
+            {
+                progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
+            });
+            
             if (cuttingProgress >= cuttingRecipeSO.cuttingProgressMax)
             {
+                KitchenObjectSo outputKitchenObjectSo = GerOutputForInput(GetKitchenObject().GetKitchenObjectSo());
                 GetKitchenObject().DestorySelf();
                 KitchenObject.SpawnKitchenObject(outputKitchenObjectSo, this);
             }
