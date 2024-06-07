@@ -23,8 +23,7 @@ public class Player : MonoBehaviour,IKitchenObjectParent
     }
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private GameInput gameInput;
-    private bool _isWalking;
-    [SerializeField] private float playerSize = .7f;
+    private bool _isWalking; [SerializeField] private float playerSize = .7f;//
     [SerializeField]float rotateSpeed = 10f;
     [SerializeField]float playerRadius = .7f;
     [SerializeField] private LayerMask countersLayerMask;

@@ -15,6 +15,7 @@ public class CuttingCounter : BaseCounter
     [SerializeField] private CuttingRecipeSO []arrayCuttingRecipeSO;
 
     private int cuttingProgress;
+    private bool _isCutComplete=true;
     public override void Interact(Player player)
     {
         if(!HasKitchenObject())
@@ -27,6 +28,7 @@ public class CuttingCounter : BaseCounter
                 {//player carrying something that can be cut
                     player.GetKitchenObject().SetKitchenObjectParent(this);
                     cuttingProgress = 0;
+                    //_isCutComplete = false;
                     CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSo());
                     OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
                     {
@@ -43,6 +45,11 @@ public class CuttingCounter : BaseCounter
         else
         {
             //there is a kitchenobject here
+            if (!_isCutComplete)
+            {
+                // Object is not fully cut yet, can't pick it up
+                return;
+            }
             if (player.HasKitchenObject())
             {
                 //player is carrying something
@@ -69,9 +76,10 @@ public class CuttingCounter : BaseCounter
             
             if (cuttingProgress >= cuttingRecipeSO.cuttingProgressMax)
             {
-                KitchenObjectSo outputKitchenObjectSo = GerOutputForInput(GetKitchenObject().GetKitchenObjectSo());
+                KitchenObjectSo outputKitchenObjectSo = GetOutputForInput(GetKitchenObject().GetKitchenObjectSo());
                 GetKitchenObject().DestorySelf();
                 KitchenObject.SpawnKitchenObject(outputKitchenObjectSo, this);
+                _isCutComplete = true;
             }
         }
     }
@@ -82,7 +90,7 @@ public class CuttingCounter : BaseCounter
         return cuttingRecipeSO != null;
     }
     
-    private KitchenObjectSo GerOutputForInput(KitchenObjectSo inputKitchenObjectSo)
+    private KitchenObjectSo GetOutputForInput(KitchenObjectSo inputKitchenObjectSo)
     {
         CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(inputKitchenObjectSo);
         if (cuttingRecipeSO != null)
