@@ -2,68 +2,41 @@ using UnityEngine;
 
 public class DoorAnimator : MonoBehaviour
 {
-    public Animator animator; 
-    public string openLeftAnimation = "DoorOpensToKitchen"; 
-    public string openRightAnimation = "DoorOpensToOtherRoom"; 
-    public string closedAnimation = "DoorStaysClosed"; 
-    public LayerMask playerLayerMask; 
-    public float detectionRange = 2f; 
+    private const string openLeftAnimation = "DoorOpensToKitchen"; 
+    private const string openRightAnimation = "DoorOpensToOtherRoom"; 
+    private const string closedAnimation = "DoorStaysClosed";
+    [SerializeField] private Door door;
+    private Animator _animator;
 
-    private bool playerIsThere = false;
-    private bool fromKitchen = false;
-
-    void Update()
+    private void Awake()
     {
-        DetectPlayer();
-        PlayDoorAnimation();
+        _animator = GetComponent<Animator>();
     }
 
-    private void DetectPlayer()
+    private void Update()
     {
-        Vector3 doorPosition = transform.position;
-
-        // Cast a ray to the left
-        RaycastHit hit;
-        if (Physics.Raycast(doorPosition, Vector3.left, out hit, detectionRange, playerLayerMask))//cu un obiect(boxxast) sau creez o functie un ontrigger enter on trigger exit
+        if (door == null)
         {
-            if (hit.collider.CompareTag("Player"))
-            {
-                playerIsThere = true;
-                fromKitchen = false;
-                return;
-            }
+            Debug.LogWarning("Door reference is not assigned in the DoorAnimator script.");
+            return;
         }
-
-        // Cast a ray to the right
-        if (Physics.Raycast(doorPosition, Vector3.right, out hit, detectionRange, playerLayerMask))
+        if (door.PlayerIsThere())
         {
-            if (hit.collider.CompareTag("Player"))
+            if (door.FromKitchen())
             {
-                playerIsThere = true;
-                fromKitchen = true;
-                return;
-            }
-        }
-
-        playerIsThere = false;
-    }
-
-    private void PlayDoorAnimation()
-    {
-        if (playerIsThere)
-        {
-            if (fromKitchen)
-            {
-                animator.Play(openRightAnimation);
+                Debug.Log("Playing OpenRight Animation");
+                _animator.Play(openRightAnimation);
             }
             else
             {
-                animator.Play(openLeftAnimation);
+                Debug.Log("Playing OpenLeft Animation");
+                _animator.Play(openLeftAnimation);
             }
         }
         else
         {
-            animator.Play(closedAnimation);
+            Debug.Log("Playing Close Animation");
+            _animator.Play(closedAnimation);
         }
     }
 }
