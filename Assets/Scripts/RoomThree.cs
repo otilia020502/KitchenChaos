@@ -6,8 +6,7 @@ public class RoomThree : MonoBehaviour
     [SerializeField] private Transform floorsParent; // Parent object containing all floors
     [SerializeField] private Color whiteColor = Color.white; // Color for white tiles
     [SerializeField] private Color blackColor = Color.black; // Color for black tiles
-    [SerializeField] private float changeInterval = 1f; // Time interval between each row's start change
-    [SerializeField] private float transitionDuration = 0.5f; // Duration for the color transition
+    [SerializeField] private float changeInterval = 0.5f; // Time interval between each row's color change
 
     private void Start()
     {
@@ -43,50 +42,28 @@ public class RoomThree : MonoBehaviour
     {
         while (true)
         {
-            for (int i = 0; i < floorsParent.childCount; i++)
+            for (int i = floorsParent.childCount - 1; i >= 0; i--)
             {
                 Transform row = floorsParent.GetChild(i);
                 Color currentColor = row.GetChild(0).GetComponent<Renderer>().material.color;
                 Color newColor = (currentColor == whiteColor) ? blackColor : whiteColor;
 
-                StartCoroutine(SmoothColorTransition(row, newColor));
-                yield return new WaitForSeconds(changeInterval); // Delay between each row's color change to create a sweeping effect
+                SetRowColor(row, newColor);
+
+                yield return new WaitForSeconds(changeInterval);
             }
         }
     }
 
-    private IEnumerator SmoothColorTransition(Transform row, Color newColor)
+    private void SetRowColor(Transform row, Color color)
     {
-        float elapsedTime = 0f;
-        int columnCount = row.childCount;
-        Color[] startColors = new Color[columnCount];
-
-        // Get the starting colors of the row
-        for (int j = 0; j < columnCount; j++)
+        for (int j = 0; j < row.childCount; j++)
         {
             Renderer renderer = row.GetChild(j).GetComponent<Renderer>();
             if (renderer != null)
             {
-                startColors[j] = renderer.material.color;
+                renderer.material.color = color;
             }
-        }
-
-        // Smoothly transition to the new color
-        while (elapsedTime < transitionDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsedTime / transitionDuration);
-
-            for (int j = 0; j < columnCount; j++)
-            {
-                Renderer renderer = row.GetChild(j).GetComponent<Renderer>();
-                if (renderer != null)
-                {
-                    renderer.material.color = Color.Lerp(startColors[j], newColor, t);
-                }
-            }
-
-            yield return null;
         }
     }
 }
