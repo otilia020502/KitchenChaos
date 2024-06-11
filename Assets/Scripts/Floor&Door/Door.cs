@@ -21,7 +21,7 @@ public class Door : MonoBehaviour
 
         // Cast a ray to the left
         RaycastHit hit;
-        Debug.DrawRay(doorPosition, Vector3.left * detectionRange, Color.red);
+        
         if (Physics.Raycast(doorPosition, Vector3.left, out hit, detectionRange, playerLayerMask))
         {
             if (hit.collider != null && hit.collider.GetComponent<Collider>() != null)
@@ -38,7 +38,7 @@ public class Door : MonoBehaviour
         }
 
         // Cast a ray to the right
-        Debug.DrawRay(doorPosition, Vector3.right * detectionRange, Color.blue);
+        
         if (Physics.Raycast(doorPosition, Vector3.right, out hit, detectionRange, playerLayerMask))
         {
             if (hit.collider != null && hit.collider.GetComponent<Collider>() != null)
