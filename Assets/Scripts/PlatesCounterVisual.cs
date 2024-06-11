@@ -31,8 +31,8 @@ public class PlatesCounterVisual : MonoBehaviour
         GameObject plate= Instantiate(plateVisual, counterTopPoint);
         platesVisual.Add(plate);
         
-        plate.transform.position = new Vector3(0,
-            counterTopPoint.localPosition.y + platesDistance*(platesVisual.Count-1), 0);
+        plate.transform.localPosition = new Vector3(0,
+            platesDistance*(platesVisual.Count-1), 0);
 
     }
 }

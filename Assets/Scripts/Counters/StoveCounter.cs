@@ -69,7 +69,8 @@ public class StoveCounter : BaseCounter, IHasProgress
                         break;
                     case State.Fried:
                         burningTimer += Time.deltaTime;
-                        
+                        Debug.Log(burningTimer);
+                        Debug.Log(_burningRecipeSo);
                         OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                         {
                             progressNormalized = burningTimer/_burningRecipeSo.burningTimerMax
@@ -139,6 +140,25 @@ public class StoveCounter : BaseCounter, IHasProgress
             if (player.HasKitchenObject())
             {
                 //player is carrying something
+                if (player.GetKitchenObject().TryGetPlate(out PlatekitchenObject platekitchenObject))
+                {
+                    // player is holding a plate
+                    if (platekitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSo()))
+                    {
+                        GetKitchenObject().DestorySelf();
+                        state = State.Idle;
+                        OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
+                        {
+                            state =  state
+                        });
+                        OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+                        {
+                            progressNormalized = 0f
+                        });
+                    }
+                    
+                }
+           
             }
             else
             {
