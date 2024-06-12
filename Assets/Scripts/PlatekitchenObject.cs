@@ -38,4 +38,9 @@ public class PlatekitchenObject : KitchenObject
         }
         
     }
+
+    public List<KitchenObjectSo> GetIngridientSos()
+    {
+        return _kitchenObjectSoList;
+    }
 }
