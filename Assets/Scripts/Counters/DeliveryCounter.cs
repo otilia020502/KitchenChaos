@@ -6,6 +6,8 @@ namespace Counters
         {
             if (player.TryGetPlateObject(out PlatekitchenObject platekitchenObject))
             {
+               DeliveryManager.Instance.DeliverRecipe(platekitchenObject);
+               
                platekitchenObject.DestorySelf();
             }
         }
