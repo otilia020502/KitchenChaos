@@ -185,4 +185,16 @@ public class Player : MonoBehaviour,IKitchenObjectParent
             SelectedCounter = newSelectedCounter
         });
     }
+
+    public bool TryGetPlateObject(out PlatekitchenObject platekitchenObject)
+    {
+        if (kitchenObject.TryGetComponent(out PlatekitchenObject plate))
+        {
+            platekitchenObject = plate;
+            return true;
+        }
+
+        platekitchenObject = null;
+        return false;
+    }
 }
