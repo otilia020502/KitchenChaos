@@ -1341,7 +1341,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 26
+  field of view: 47.9
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1366,8 +1366,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.4573046, y: -0.023996027, z: 0.013814425, w: 0.88887906}
-  m_LocalPosition: {x: -4.8216643, y: 46.75191, z: -26.522787}
+  m_LocalRotation: {x: -0.41387126, y: 0.3643505, z: -0.18867315, w: -0.81262636}
+  m_LocalPosition: {x: -6.9911532, y: 33.709557, z: -7.5106926}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1475,6 +1475,8 @@ MonoBehaviour:
   whiteColor: {r: 1, g: 1, b: 1, a: 1}
   blackColor: {r: 0, g: 0, b: 0, a: 1}
   changeInterval: 0.5
+  moveDistance: 1
+  moveSpeed: 1
 --- !u!4 &1070296128 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8839374208047077758, guid: afe642867c56f314899e448c58c70ad2, type: 3}
@@ -1868,6 +1870,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1514283288
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514283284}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1544599793 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3733285756486705474, guid: e678fb3ba46bd6d4bbaf6612a215bd4f, type: 3}
@@ -2753,8 +2782,16 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 323449442763013643, guid: af7520262b9508c4ba1e9372e5b322ce, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 323449442763013643, guid: af7520262b9508c4ba1e9372e5b322ce, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 323449442763013643, guid: af7520262b9508c4ba1e9372e5b322ce, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 12.61
       objectReference: {fileID: 0}
     - target: {fileID: 323449442763013643, guid: af7520262b9508c4ba1e9372e5b322ce, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2762,7 +2799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 323449442763013643, guid: af7520262b9508c4ba1e9372e5b322ce, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: -8.17
       objectReference: {fileID: 0}
     - target: {fileID: 323449442763013643, guid: af7520262b9508c4ba1e9372e5b322ce, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2990,7 +3027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2661474184655639748, guid: 6c84a7badca5de14bba924420104bb2b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -31.4
+      value: -32.26
       objectReference: {fileID: 0}
     - target: {fileID: 2661474184655639748, guid: 6c84a7badca5de14bba924420104bb2b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2998,7 +3035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2661474184655639748, guid: 6c84a7badca5de14bba924420104bb2b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20.8
+      value: 24.61
       objectReference: {fileID: 0}
     - target: {fileID: 2661474184655639748, guid: 6c84a7badca5de14bba924420104bb2b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3043,6 +3080,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2661474184655639746, guid: 6c84a7badca5de14bba924420104bb2b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1514283286}
+    - targetCorrespondingSourceObject: {fileID: 2661474184655639746, guid: 6c84a7badca5de14bba924420104bb2b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1514283288}
     - targetCorrespondingSourceObject: {fileID: 672762059736953328, guid: 6c84a7badca5de14bba924420104bb2b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1249892492}

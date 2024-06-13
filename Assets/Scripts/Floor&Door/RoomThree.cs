@@ -9,6 +9,11 @@ namespace Floor_Door
         [SerializeField] private Color whiteColor = Color.white; // Color for white tiles
         [SerializeField] private Color blackColor = Color.black; // Color for black tiles
         [SerializeField] private float changeInterval = 0.5f; // Time interval between each row's color change
+        [SerializeField] private float moveDistance = 1f; // Distance to move each row
+        [SerializeField] private float moveSpeed = 1f; // Speed of the row movement
+
+        private Vector3[] originalPositions;
+        private float rowWidth;
 
         private void Start()
         {
@@ -19,7 +24,9 @@ namespace Floor_Door
             }
 
             InitializeRowColors();
-            StartCoroutine(ChangeRowColors());
+            CacheOriginalPositions();
+            CalculateRowWidth();
+            StartCoroutine(MoveRows());
         }
 
         private void InitializeRowColors()
@@ -40,33 +47,69 @@ namespace Floor_Door
             }
         }
 
-        private IEnumerator ChangeRowColors()
+        private void CacheOriginalPositions()
+        {
+            originalPositions = new Vector3[floorsParent.childCount];
+            for (int i = 0; i < floorsParent.childCount; i++)
+            {
+                originalPositions[i] = floorsParent.GetChild(i).position;
+            }
+        }
+
+        private void CalculateRowWidth()
+        {
+            if (floorsParent.childCount > 0 && floorsParent.GetChild(0).childCount > 0)
+            {
+                float tileWidth = floorsParent.GetChild(0).GetChild(0).localScale.x;
+                rowWidth = tileWidth * floorsParent.GetChild(0).childCount;
+            }
+        }
+
+        private IEnumerator MoveRows()
         {
             while (true)
             {
-                for (int i = floorsParent.childCount - 1; i >= 0; i--)
+                // Move rows to the left
+                yield return StartCoroutine(MoveAllRows(Vector3.left * moveDistance));
+
+                yield return new WaitForSeconds(changeInterval);
+
+                // Check if rows need to wrap around to the right
+                for (int i = 0; i < floorsParent.childCount; i++)
                 {
                     Transform row = floorsParent.GetChild(i);
-                    Color currentColor = row.GetChild(0).GetComponent<Renderer>().material.color;
-                    Color newColor = (currentColor == whiteColor) ? blackColor : whiteColor;
-
-                    SetRowColor(row, newColor);
-
-                    yield return new WaitForSeconds(changeInterval);
-                    //pauses the coroutine for changeInterval before continuing
+                    if (row.position.x <= originalPositions[i].x - rowWidth)
+                    {
+                        row.position = new Vector3(originalPositions[i].x + rowWidth - moveDistance, row.position.y, row.position.z);
+                    }
                 }
             }
         }
 
-        private void SetRowColor(Transform row, Color color)
+        private IEnumerator MoveAllRows(Vector3 targetOffset)
         {
-            for (int j = 0; j < row.childCount; j++)
+            float elapsedTime = 0f;
+            Vector3[] startPositions = new Vector3[floorsParent.childCount];
+            for (int i = 0; i < floorsParent.childCount; i++)
             {
-                Renderer renderer = row.GetChild(j).GetComponent<Renderer>();
-                if (renderer != null)
+                startPositions[i] = floorsParent.GetChild(i).position;
+            }
+
+            while (elapsedTime < moveDistance / moveSpeed)
+            {
+                for (int i = 0; i < floorsParent.childCount; i++)
                 {
-                    renderer.material.color = color;
+                    Transform row = floorsParent.GetChild(i);
+                    row.position = Vector3.Lerp(startPositions[i], startPositions[i] + targetOffset, (elapsedTime * moveSpeed) / moveDistance);
                 }
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            for (int i = 0; i < floorsParent.childCount; i++)
+            {
+                Transform row = floorsParent.GetChild(i);
+                row.position = startPositions[i] + targetOffset;
             }
         }
     }
