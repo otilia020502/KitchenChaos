@@ -65,7 +65,7 @@ namespace Floor_Door
 
         private bool IsPlayerOnCube(Transform cube)
         {
-            Collider[] colliders = Physics.OverlapBox(cube.position, cube.localScale / 2, Quaternion.identity, playerLayer);
+            Collider[] colliders = Physics.OverlapBox(cube.position, new Vector3(0.7f,0.7f,2f), Quaternion.identity, playerLayer);
            // Quaternion.identity: The orientation of the box. Quaternion.identity means no rotation, so the box is aligned with the world axes.
             return colliders.Length > 0;
         }
