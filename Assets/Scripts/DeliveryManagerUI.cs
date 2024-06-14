@@ -35,11 +35,14 @@ public class DeliveryManagerUI : MonoBehaviour
                 Destroy(child.gameObject);
             }
 
-            foreach (var waitingOrder in DeliveryManager.Instance.GetWaitingRecipesList())
-            {
-                Transform instantiatedTemplate = Instantiate(recipeTemplate, container);
-                instantiatedTemplate.gameObject.SetActive(true);
-            }
+            
+        }
+        foreach (var waitingOrderRecipeSO in DeliveryManager.Instance.GetWaitingRecipesList())
+        {
+            Transform instantiatedTemplate = Instantiate(recipeTemplate, container);
+            instantiatedTemplate.gameObject.SetActive(true);
+            var deliveryManagerSingleUI= instantiatedTemplate.GetComponent<DeliveryManagerSingleUI>();
+            deliveryManagerSingleUI.SetRecipeSO(waitingOrderRecipeSO);
         }
     }
 }
