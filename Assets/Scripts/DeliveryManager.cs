@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 public class DeliveryManager : MonoBehaviour
 {
-    public event EventHandler OnRecipeAdded, OnRecipeCompleted;
+    public event EventHandler OnRecipeAdded, OnRecipeCompleted, OnRecipeSucces, OnRecipeFailed;
     
     
     public static DeliveryManager Instance { get; private set;}
@@ -72,12 +72,15 @@ public class DeliveryManager : MonoBehaviour
                     //playerdelivered the correct recipe
                     Debug.Log("player delivered the correct recipe");
                     waitingRecipes.RemoveAt(i);
+                    
                     OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
+                    OnRecipeSucces?.Invoke(this, EventArgs.Empty);
                     return;
                 }
             }
         }
         //no matches found/ the player did not deliver a correct recipe
+        OnRecipeFailed?.Invoke(this, EventArgs.Empty);
     }
 
     public List<RecipeSO> GetWaitingRecipesList()
