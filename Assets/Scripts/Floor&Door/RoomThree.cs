@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 namespace Floor_Door
@@ -26,7 +25,11 @@ namespace Floor_Door
             InitializeRowColors();
             CacheOriginalPositions();
             CalculateRowWidth();
-            StartCoroutine(MoveRows());
+        }
+
+        private void Update()
+        {
+            MoveRows();
         }
 
         private void InitializeRowColors()
@@ -53,8 +56,10 @@ namespace Floor_Door
             for (int i = 0; i < floorsParent.childCount; i++)
             {
                 originalPositions[i] = floorsParent.GetChild(i).position;
+                Debug.Log(originalPositions[i]);
             }
         }
+        
 
         private void CalculateRowWidth()
         {
@@ -65,51 +70,18 @@ namespace Floor_Door
             }
         }
 
-        private IEnumerator MoveRows()
+        private void MoveRows()
         {
-            while (true)
-            {
-                // Move rows to the left
-                yield return StartCoroutine(MoveAllRows(Vector3.left * moveDistance));
-
-                yield return new WaitForSeconds(changeInterval);
-
-                // Check if rows need to wrap around to the right
-                for (int i = 0; i < floorsParent.childCount; i++)
-                {
-                    Transform row = floorsParent.GetChild(i);
-                    if (row.position.x <= originalPositions[i].x - rowWidth)
-                    {
-                        row.position = new Vector3(originalPositions[i].x + rowWidth - moveDistance, row.position.y, row.position.z);
-                    }
-                }
-            }
-        }
-
-        private IEnumerator MoveAllRows(Vector3 targetOffset)
-        {
-            float elapsedTime = 0f;
-            Vector3[] startPositions = new Vector3[floorsParent.childCount];
-            for (int i = 0; i < floorsParent.childCount; i++)
-            {
-                startPositions[i] = floorsParent.GetChild(i).position;
-            }
-
-            while (elapsedTime < moveDistance / moveSpeed)
-            {
-                for (int i = 0; i < floorsParent.childCount; i++)
-                {
-                    Transform row = floorsParent.GetChild(i);
-                    row.position = Vector3.Lerp(startPositions[i], startPositions[i] + targetOffset, (elapsedTime * moveSpeed) / moveDistance);
-                }
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
-
             for (int i = 0; i < floorsParent.childCount; i++)
             {
                 Transform row = floorsParent.GetChild(i);
-                row.position = startPositions[i] + targetOffset;
+                row.position += Vector3.left * moveSpeed * Time.deltaTime;
+
+                // Check if the row needs to wrap around to the right
+                if (row.position.x <= originalPositions[i].x - rowWidth)
+                {
+                    row.position = new Vector3(originalPositions[i].x + rowWidth, row.position.y, row.position.z);
+                }
             }
         }
     }

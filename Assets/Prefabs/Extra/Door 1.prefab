@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 418697751366784564}
+  - component: {fileID: 8856900487161311640}
   m_Layer: 0
   m_Name: Door 1
   m_TagString: Untagged
@@ -30,8 +31,29 @@ Transform:
   m_Children:
   - {fileID: 418697749703621149}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -8, z: 0}
+--- !u!65 &8856900487161311640
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418697751366784523}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.48, y: 1.66, z: 1.54}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3891331076382825310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50,15 +72,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3733285756486705475, guid: e678fb3ba46bd6d4bbaf6612a215bd4f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.36852
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3733285756486705475, guid: e678fb3ba46bd6d4bbaf6612a215bd4f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.6900003
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3733285756486705475, guid: e678fb3ba46bd6d4bbaf6612a215bd4f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.7888931
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3733285756486705475, guid: e678fb3ba46bd6d4bbaf6612a215bd4f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -127,14 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fd72e2c6ca631499da32bc13ecee2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 418697749703621151}
-  openLeftAnimation: DoorOpensToKitchen
-  openRightAnimation: DoorOpensToOtherRoom
-  closedAnimation: DoorStaysClosed
-  playerLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  detectionRange: 2
+  door: {fileID: 0}
 --- !u!95 &418697749703621151
 Animator:
   serializedVersion: 5
@@ -172,7 +187,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 3.597403, y: 2.7461638, z: 3.2946463}
   m_Center: {x: -0.02636457, y: 0.373083, z: 0.6473311}
