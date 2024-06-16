@@ -1,50 +1,47 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Floor_Door
 {
     public class RoomThree : MonoBehaviour
     {
-        [SerializeField] private Transform floorsParent; // Parent object containing all floors
-        [SerializeField] private Color whiteColor = Color.white; // Color for white tiles
-        [SerializeField] private Color blackColor = Color.black; // Color for black tiles
-        [SerializeField] private float changeInterval = 0.5f; // Time interval between each row's color change
-        [SerializeField] private float moveDistance = 1f; // Distance to move each row
-        [SerializeField] private float moveSpeed = 1f; // Speed of the row movement
+        // List to store rows of the floor
+        public List<Transform> floorRows;
 
-        private Vector3[] originalPositions;
-        private float rowWidth;
+        // Colors for alternating rows
+        public Color whiteColor = Color.white;
+        public Color blackColor = Color.black;
 
-        private void Start()
+        // Speed of the movement
+        public float moveSpeed = 5f;
+
+        // Dictionary to store original positions of rows
+        private Dictionary<Transform, Vector3> originalPositions;
+
+        void Start()
         {
-            if (floorsParent == null)
-            {
-                Debug.LogError("Floors parent is not assigned.");
-                return;
-            }
-
             InitializeRowColors();
             CacheOriginalPositions();
-            CalculateRowWidth();
         }
 
-        private void Update()
+        void Update()
         {
             MoveRows();
         }
 
         private void InitializeRowColors()
         {
-            for (int i = 0; i < floorsParent.childCount; i++)
+            for (int i = 0; i < floorRows.Count; i++)
             {
-                Transform row = floorsParent.GetChild(i);
-                Color initialColor = (i % 2 == 0) ? blackColor : whiteColor;
-
+                Color rowColor = (i % 2 == 0) ? blackColor : whiteColor;
+                Transform row = floorRows[i];
                 for (int j = 0; j < row.childCount; j++)
                 {
                     Renderer renderer = row.GetChild(j).GetComponent<Renderer>();
                     if (renderer != null)
                     {
-                        renderer.material.color = initialColor;
+                        renderer.material.color = rowColor;
                     }
                 }
             }
@@ -52,35 +49,31 @@ namespace Floor_Door
 
         private void CacheOriginalPositions()
         {
-            originalPositions = new Vector3[floorsParent.childCount];
-            for (int i = 0; i < floorsParent.childCount; i++)
+            originalPositions = new Dictionary<Transform, Vector3>();
+            foreach (Transform row in floorRows)
             {
-                originalPositions[i] = floorsParent.GetChild(i).position;
-                Debug.Log(originalPositions[i]);
-            }
-        }
-        
-
-        private void CalculateRowWidth()
-        {
-            if (floorsParent.childCount > 0 && floorsParent.GetChild(0).childCount > 0)
-            {
-                float tileWidth = floorsParent.GetChild(0).GetChild(0).localScale.x;
-                rowWidth = tileWidth * floorsParent.GetChild(0).childCount;
+                originalPositions[row] = row.position;
             }
         }
 
         private void MoveRows()
         {
-            for (int i = 0; i < floorsParent.childCount; i++)
+            foreach (Transform row in floorRows)
             {
-                Transform row = floorsParent.GetChild(i);
+                // Move row to the left
                 row.position += Vector3.left * moveSpeed * Time.deltaTime;
 
                 // Check if the row needs to wrap around to the right
-                if (row.position.x <= originalPositions[i].x - rowWidth)
+                Vector3 firstRowOriginalPosition = originalPositions[floorRows[0]];
+                
+
+                if (row.position.x <= firstRowOriginalPosition.x - row.GetChild(0).localScale.x)
                 {
-                    row.position = new Vector3(originalPositions[i].x + rowWidth, row.position.y, row.position.z);
+                    // Find the last row's position
+                    Vector3 lastRow = originalPositions[floorRows[floorRows.Count - 1]];
+
+                    // Move the current row to the position of the last row
+                    row.position = new Vector3(lastRow.x , lastRow.y, lastRow.z);
                 }
             }
         }
