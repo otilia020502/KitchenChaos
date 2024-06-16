@@ -56,7 +56,8 @@ namespace Floor_Door
 
                     if (IsPlayerOnCube(cube))
                     {
-                        SetRowAndColumnColor(i, j, redColor);
+                        Debug.Log("row "+i+" column "+ j);
+                        SetRowAndColumnColor(i, j+2, redColor);
                         return; // Exit after finding the player to ensure only one row and column is red
                     }
                 }
@@ -80,6 +81,7 @@ namespace Floor_Door
                 if (renderer != null)
                 {
                     renderer.material.color = color;
+                   
                 }
             }
 
@@ -90,6 +92,7 @@ namespace Floor_Door
                 if (renderer != null)
                 {
                     renderer.material.color = color;
+                   
                 }
             }
         }
