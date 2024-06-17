@@ -1,0 +1,15 @@
+using Counters;
+using UnityEngine;
+
+namespace UI
+{
+    public class ResetStaticDataManager : MonoBehaviour
+    {
+        private void Awake()
+        {
+            CuttingCounter.ResetStaticData();
+            BaseCounter.ResetStaticData();
+            TrashCounter.ResetStaticData();
+        }
+    }
+}

@@ -1,4 +1,5 @@
 
+using Counters;
 using UnityEngine;
 
 public class CuttingCounterVisual : MonoBehaviour
