@@ -1275,7 +1275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &767266681
 Transform:
   m_ObjectHideFlags: 0
@@ -1457,9 +1457,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ae95a919e0bb94ebad4b941606c095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera1: {fileID: 1400983940}
-  camera2: {fileID: 1256484709}
-  camera3: {fileID: 767266680}
+  camera1: {fileID: 1400983942}
+  camera2: {fileID: 1256484711}
+  camera3: {fileID: 767266682}
   player: {fileID: 1514283284}
 --- !u!65 &874241793
 BoxCollider:
@@ -1480,8 +1480,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 3.9875026, z: 3.0409355}
-  m_Center: {x: 0, y: 1.4937513, z: 0.14632353}
+  m_Size: {x: 1, y: 0.26527667, z: 3.0409355}
+  m_Center: {x: 0, y: -0.36736143, z: 0.14632353}
 --- !u!4 &915199833 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 323449442781732463, guid: af7520262b9508c4ba1e9372e5b322ce, type: 3}
@@ -1972,7 +1972,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1256484710
 Transform:
   m_ObjectHideFlags: 0
@@ -3637,9 +3637,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ae95a919e0bb94ebad4b941606c095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera1: {fileID: 1400983940}
-  camera2: {fileID: 1256484709}
-  camera3: {fileID: 767266680}
+  camera1: {fileID: 1400983942}
+  camera2: {fileID: 1256484711}
+  camera3: {fileID: 767266682}
   player: {fileID: 1514283284}
 --- !u!65 &2138372641
 BoxCollider:
@@ -3660,8 +3660,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2.5832262, z: 2.686282}
-  m_Center: {x: 0, y: 0.7916131, z: 0.49277592}
+  m_Size: {x: 1, y: 0.69387704, z: 2.686282}
+  m_Center: {x: 0, y: -0.1530613, z: 0.49277592}
 --- !u!4 &2141092064 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3977668466242950607, guid: 7bf9fbd38abad5d46946642235f7a3bf, type: 3}
