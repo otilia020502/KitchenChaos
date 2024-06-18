@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
-    
+    public float EffectsVolume= 1f;
     
     [SerializeField] private AudioClipRefsSo _audioClipRefsSo;
 
@@ -69,7 +69,7 @@ public class SoundManager : MonoBehaviour
     }
     private void PlaySound(AudioClip audioClip, Vector3 position, float volume = 1f)
     {
-        AudioSource.PlayClipAtPoint(audioClip, position, volume);
+        AudioSource.PlayClipAtPoint(audioClip, position, volume*EffectsVolume);
     }
 
     public void PlayFootsStepsSound(Vector3 position, float volume)
