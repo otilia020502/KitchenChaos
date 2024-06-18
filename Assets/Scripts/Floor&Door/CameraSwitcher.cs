@@ -1,54 +1,65 @@
+using Cinemachine;
 using UnityEngine;
 
 namespace Floor_Door
 {
     public class CameraSwitcher : MonoBehaviour
     {
-        public GameObject camera1;
-        public GameObject camera2;
-        public GameObject camera3;
-        public GameObject player; // The GameObject that will trigger the switch
-
-        private int currentCameraIndex;
+        public CinemachineVirtualCamera camera1; 
+        public CinemachineVirtualCamera camera2; 
+        public CinemachineVirtualCamera camera3; 
+        public GameObject player;
 
         private void Start()
         {
-            camera1.SetActive(true);
-            camera2.SetActive(false);
-            camera3.SetActive(false);
-            currentCameraIndex = 1;
+            
+            camera1.gameObject.SetActive(true);
+            camera2.gameObject.SetActive(true);
+            camera3.gameObject.SetActive(true);
+
+            camera1.Priority = 12;
+            camera2.Priority = 10;
+            camera3.Priority = 10;
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject == player)
             {
-                SwitchCamera();
+                if (gameObject.name == "TriggerRoom1")
+                {
+                    SwitchToRoom(1);
+                }
+                else if (gameObject.name == "TriggerRoom2")
+                {
+                    SwitchToRoom(2);
+                }
+                else if (gameObject.name == "TriggerRoom3")
+                {
+                    SwitchToRoom(3);
+                }
             }
         }
 
-        private void SwitchCamera()
+        private void SwitchToRoom(int roomNumber)
         {
-            if (currentCameraIndex == 1)
+            switch (roomNumber)
             {
-                camera1.SetActive(false);
-                camera2.SetActive(true);
-                camera3.SetActive(false);
-                currentCameraIndex = 2;
-            }
-            else if (currentCameraIndex == 2)
-            {
-                camera1.SetActive(false);
-                camera2.SetActive(false);
-                camera3.SetActive(true);
-                currentCameraIndex = 3;
-            }
-            else if (currentCameraIndex == 3)
-            {
-                camera1.SetActive(true);
-                camera2.SetActive(false);
-                camera3.SetActive(false);
-                currentCameraIndex = 1;
+                case 1:
+                    camera1.Priority = 12;
+                    camera2.Priority = 10;
+                    camera3.Priority = 10;
+                    break;
+                case 2:
+                    camera1.Priority = 10;
+                    camera2.Priority = 12;
+                    camera3.Priority = 10;
+                    break;
+                case 3:
+                    camera1.Priority = 10;
+                    camera2.Priority = 10;
+                    camera3.Priority = 12;
+                    break;
             }
         }
     }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -665,6 +665,76 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3852026ddddaa2341a0a6a4be9dda686, type: 3}
+--- !u!1 &445734772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 445734773}
+  - component: {fileID: 445734775}
+  - component: {fileID: 445734774}
+  m_Layer: 0
+  m_Name: TriggerRoom1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &445734773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445734772}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.69, y: 0, z: -2.39}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1864637650}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &445734774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445734772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ae95a919e0bb94ebad4b941606c095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera1: {fileID: 1400983942}
+  camera2: {fileID: 1256484711}
+  camera3: {fileID: 767266682}
+  player: {fileID: 1514283284}
+--- !u!65 &445734775
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445734772}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.7638776, y: 2.246785, z: 10.748637}
+  m_Center: {x: -0.38193846, y: 0.6233927, z: 4.5239515}
 --- !u!1001 &456871406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1197,7 +1267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &767266681
 Transform:
   m_ObjectHideFlags: 0
@@ -1346,7 +1416,7 @@ GameObject:
   - component: {fileID: 874241793}
   - component: {fileID: 874241792}
   m_Layer: 0
-  m_Name: Room1_2
+  m_Name: TriggerRoom2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1379,9 +1449,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ae95a919e0bb94ebad4b941606c095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera1: {fileID: 1400983940}
-  camera2: {fileID: 1256484709}
-  camera3: {fileID: 767266680}
+  camera1: {fileID: 1400983942}
+  camera2: {fileID: 1256484711}
+  camera3: {fileID: 767266682}
   player: {fileID: 1514283284}
 --- !u!65 &874241793
 BoxCollider:
@@ -1402,8 +1472,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.26527667, z: 3.0409355}
-  m_Center: {x: 0, y: -0.36736143, z: 0.14632353}
+  m_Size: {x: 1.853762, y: 3.0860798, z: 3.0409355}
+  m_Center: {x: -0.4268807, y: 1.0430402, z: 0.14632353}
 --- !u!4 &915199833 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 323449442781732463, guid: af7520262b9508c4ba1e9372e5b322ce, type: 3}
@@ -1475,7 +1545,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 103.5
+  field of view: 68.4
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1500,8 +1570,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.41388568, y: -0.58442354, z: 0.43074375, w: -0.5491882}
-  m_LocalPosition: {x: -7.3457794, y: 16.809614, z: 6.077973}
+  m_LocalRotation: {x: -0.5693286, y: -0.01629901, z: 0.004579313, w: -0.8219358}
+  m_LocalPosition: {x: -17.00676, y: 12.8938465, z: 9.92367}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1798,7 +1868,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1256484710
 Transform:
   m_ObjectHideFlags: 0
@@ -2236,7 +2306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1400983941
 Transform:
   m_ObjectHideFlags: 0
@@ -3256,7 +3326,7 @@ GameObject:
   - component: {fileID: 2138372641}
   - component: {fileID: 2138372640}
   m_Layer: 0
-  m_Name: Room1_3
+  m_Name: TriggerRoom3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3289,9 +3359,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ae95a919e0bb94ebad4b941606c095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera1: {fileID: 1400983940}
-  camera2: {fileID: 1256484709}
-  camera3: {fileID: 767266680}
+  camera1: {fileID: 1400983942}
+  camera2: {fileID: 1256484711}
+  camera3: {fileID: 767266682}
   player: {fileID: 1514283284}
 --- !u!65 &2138372641
 BoxCollider:
@@ -3312,8 +3382,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.69387704, z: 2.686282}
-  m_Center: {x: 0, y: -0.1530613, z: 0.49277592}
+  m_Size: {x: 1.7638776, y: 2.246785, z: 2.686282}
+  m_Center: {x: -0.38193846, y: 0.6233927, z: 0.49277592}
 --- !u!4 &2141092064 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3977668466242950607, guid: 7bf9fbd38abad5d46946642235f7a3bf, type: 3}
@@ -3974,6 +4044,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 323449441894355535, guid: af7520262b9508c4ba1e9372e5b322ce, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2138372639}
+    - targetCorrespondingSourceObject: {fileID: 323449441894355535, guid: af7520262b9508c4ba1e9372e5b322ce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 445734773}
     - targetCorrespondingSourceObject: {fileID: 323449441885848083, guid: af7520262b9508c4ba1e9372e5b322ce, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1256484710}
@@ -4063,7 +4136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2661474184655639748, guid: 6c84a7badca5de14bba924420104bb2b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.17
+      value: -16.87
       objectReference: {fileID: 0}
     - target: {fileID: 2661474184655639748, guid: 6c84a7badca5de14bba924420104bb2b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4071,7 +4144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2661474184655639748, guid: 6c84a7badca5de14bba924420104bb2b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 24.12
+      value: 13.81
       objectReference: {fileID: 0}
     - target: {fileID: 2661474184655639748, guid: 6c84a7badca5de14bba924420104bb2b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4135,13 +4208,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 6518953606138001856, guid: a2ba02c808af1d744a65a9c12c3d93b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6518953606138001919, guid: a2ba02c808af1d744a65a9c12c3d93b9, type: 3}
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6518953606138001919, guid: a2ba02c808af1d744a65a9c12c3d93b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.910004
+      value: -13.47
       objectReference: {fileID: 0}
     - target: {fileID: 6518953606138001919, guid: a2ba02c808af1d744a65a9c12c3d93b9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4149,7 +4226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6518953606138001919, guid: a2ba02c808af1d744a65a9c12c3d93b9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20.66
+      value: 18.63
       objectReference: {fileID: 0}
     - target: {fileID: 6518953606138001919, guid: a2ba02c808af1d744a65a9c12c3d93b9, type: 3}
       propertyPath: m_LocalRotation.w
