@@ -10,7 +10,9 @@ public class VolumeController : MonoBehaviour
     [SerializeField] private Slider effectsSlider;
     [SerializeField] private Button closedButton;
     [SerializeField] private AudioSource backgroundMusic;
-    
+
+    private const string PLAYER_PREFS_MUSIC = "BackgroundMusicVolume";
+    private const string PLAYER_PREFS_EFFECTS = "EffectsVolume";
 
     private void Start()
     {
@@ -26,8 +28,8 @@ public class VolumeController : MonoBehaviour
     }
     public void Show()
     {
-        musicSlider.value = backgroundMusic.volume;
-        effectsSlider.value = SoundManager.Instance.EffectsVolume;
+        musicSlider.value = PlayerPrefs.GetFloat(PLAYER_PREFS_MUSIC, 1f);
+        effectsSlider.value = PlayerPrefs.GetFloat(PLAYER_PREFS_EFFECTS, 1f);
         
         gameObject.SetActive(true);
         
@@ -36,12 +38,15 @@ public class VolumeController : MonoBehaviour
     private void ChangeEffectsVolume(float volume)
     {
         SoundManager.Instance.EffectsVolume = volume;
+        PlayerPrefs.SetFloat(PLAYER_PREFS_EFFECTS,volume);
+        PlayerPrefs.Save();
     }
 
     private void ChangeMusicVolume(float volume)
     {
         backgroundMusic.volume = volume;
-        
+        PlayerPrefs.SetFloat(PLAYER_PREFS_MUSIC,volume);
+        PlayerPrefs.Save();
     }
     
     
