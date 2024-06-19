@@ -149,7 +149,8 @@ public class Player : MonoBehaviour,IKitchenObjectParent
         
         var moveDistance = Time.deltaTime* moveSpeed;
         var step = moveDir * moveDistance;
-        bool canMove= Physics.CapsuleCast(transform.position, transform.position+Vector3.up * playerHeight, playerRadius,moveDir, moveDistance)==false;
+        bool canMove= Physics.CapsuleCast(transform.position, transform.position+Vector3.up * playerHeight, 
+            playerRadius,moveDir, moveDistance, countersLayerMask)==false;
         
         if (!canMove)
         {//try to move on x axis

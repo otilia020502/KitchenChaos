@@ -13,7 +13,7 @@ public class DeliveryManager : MonoBehaviour
     
     public static DeliveryManager Instance { get; private set;}
     [SerializeField] private RecipeSOList _recipeSoList;
-    private List<RecipeSO> waitingRecipes;
+    private List<RecipeSO> waitingRecipes;//client class
     private float spawnRecipeTimer;
     private float spawnRecipeTimerMax = 4f;
     private int waitingRecipesMax = 4;
