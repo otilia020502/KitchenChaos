@@ -65,7 +65,11 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
 
     }
     void Update()
-    {   
+    {
+        if (!IsOwner)
+        {
+            return;
+        }
         HandleMovement();
         HandleInteractions();
         
@@ -137,9 +141,11 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
         }
        
     }
+    
     private void HandleMovement()
     {
         Vector2 inputVector = GameInput.Instance.GetMovementVectorNormalized();
+        
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
         float playerHeight = 2f;
         
