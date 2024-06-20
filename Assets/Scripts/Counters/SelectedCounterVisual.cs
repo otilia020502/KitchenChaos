@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using GameObject = UnityEngine.GameObject;
 
-public class NewBehaviourScript : MonoBehaviour
+public class SelectedCounterVisual : MonoBehaviour
 {
    [FormerlySerializedAs("clearCounter")] [SerializeField] private BaseCounter currentCounter;
    [SerializeField]private GameObject[] selectedCounterVisual;
    private void Start()
    {
-      Player.Instance.OnSelectedCounterChanged += OnSelectedCounterChanged;
+      //Player.Instance.OnSelectedCounterChanged += OnSelectedCounterChanged;
    }
 
    private void OnSelectedCounterChanged(object sender, Player.OnSelectedCounterChangedEventArgs e)

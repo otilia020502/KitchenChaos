@@ -77,7 +77,7 @@ public class KitchenGameManager : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        print(state);
+        //print(state);
         
     }
 

@@ -1,10 +1,10 @@
 using UnityEngine;
-using UnityEngine.Video;
 using System;
-public class Player : MonoBehaviour,IKitchenObjectParent
+using Unity.Netcode;
+public class Player : NetworkBehaviour,IKitchenObjectParent
 {
     
-    public static Player Instance { get; private set; }
+    //public static Player Instance { get; private set; }
 
     public event EventHandler OnPickedSomething;
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged ;
@@ -26,21 +26,17 @@ public class Player : MonoBehaviour,IKitchenObjectParent
 
     private void Awake()//happens before start, setez eu
     {
-        if (Instance == null)
-        {
-            Instance = this;
+        
+        //    Instance = this;
             
-        }
-        else
-        {
-            Debug.LogError("There is more than one player instance");
-        }
+      
+        
         
     }
     private void Start()//iau de la altii
     {
-        gameInput.OnInteractAction += GameInput_OnInteraction;
-        gameInput.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
+        GameInput.Instance.OnInteractAction += GameInput_OnInteraction;
+        GameInput.Instance.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
     }
     private void GameInput_OnInteractAlternateAction(object sender, System.EventArgs e)
     {
@@ -110,7 +106,7 @@ public class Player : MonoBehaviour,IKitchenObjectParent
 
     private void HandleInteractions()
     {
-        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
+        Vector2 inputVector = GameInput.Instance.GetMovementVectorNormalized();
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
         if (moveDir != Vector3.zero)
         {
@@ -143,7 +139,7 @@ public class Player : MonoBehaviour,IKitchenObjectParent
     }
     private void HandleMovement()
     {
-        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
+        Vector2 inputVector = GameInput.Instance.GetMovementVectorNormalized();
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
         float playerHeight = 2f;
         

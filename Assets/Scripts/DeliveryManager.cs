@@ -33,7 +33,7 @@ public class DeliveryManager : MonoBehaviour
             if (KitchenGameManager.Instance.GameIsPlaying() && waitingRecipes.Count < waitingRecipesMax)
             {
                 RecipeSO waitingRecipeSo = _recipeSoList.recipes[Random.Range(0, _recipeSoList.recipes.Count)];
-                Debug.Log(waitingRecipeSo.recipeName);
+                //Debug.Log(waitingRecipeSo.recipeName);
                 waitingRecipes.Add(waitingRecipeSo);
                 OnRecipeAdded?.Invoke(this, EventArgs.Empty);
             }

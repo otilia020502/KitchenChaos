@@ -69,8 +69,8 @@ public class StoveCounter : BaseCounter, IHasProgress
                         break;
                     case State.Fried:
                         burningTimer += Time.deltaTime;
-                        Debug.Log(burningTimer);
-                        Debug.Log(_burningRecipeSo);
+                       /// Debug.Log(burningTimer);
+                       // Debug.Log(_burningRecipeSo);
                         OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                         {
                             progressNormalized = burningTimer/_burningRecipeSo.burningTimerMax
