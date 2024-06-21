@@ -25,6 +25,7 @@ public class SelectedCounterVisual : MonoBehaviour
 
    private void PlayerSpawned(object sender, EventArgs e)
    {
+     
       if (Player.LocalInstance != null)
       {
          Player.LocalInstance.OnSelectedCounterChanged -= OnSelectedCounterChanged;

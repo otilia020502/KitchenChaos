@@ -27,12 +27,15 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
     
     public override void OnNetworkSpawn()
     {
-        if (LocalInstance == null)
-        {
-            LocalInstance = this;
+        if(IsOwner){
+            
+                LocalInstance = this;
+            
         }
+            OnAnyPlayerSpawned?.Invoke(this, EventArgs.Empty);
+            
         
-        OnAnyPlayerSpawned?.Invoke(this, EventArgs.Empty);
+        
     }
 
     private void Start()//iau de la altii
