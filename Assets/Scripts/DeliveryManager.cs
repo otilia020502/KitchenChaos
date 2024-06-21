@@ -15,7 +15,7 @@ public class DeliveryManager :NetworkBehaviour
     public static DeliveryManager Instance { get; private set;}
     [SerializeField] private RecipeSOList _recipeSoList;
     private List<RecipeSO> waitingRecipes;//client class
-    private float spawnRecipeTimer;
+    private float spawnRecipeTimer=4f;
     private float spawnRecipeTimerMax = 4f;
     private int waitingRecipesMax = 4;
     private int succesfullDelivery;
@@ -83,21 +83,42 @@ public class DeliveryManager :NetworkBehaviour
 
                 if (plateContentMatchesRecipe)
                 {
-                    //playerdelivered the correct recipe
-                    succesfullDelivery++;
-                    Debug.Log("player delivered the correct recipe");
-                    waitingRecipes.RemoveAt(i);
-                    
-                    OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
-                    OnRecipeSucces?.Invoke(this, EventArgs.Empty);
+                    DeliverSuccesfullRecipeServerRpc(i);
                     return;
+                    
                 }
+                
             }
         }
+        DeliverFailedRecipeServerRpc();
         //no matches found/ the player did not deliver a correct recipe
-        OnRecipeFailed?.Invoke(this, EventArgs.Empty);
+        
     }
 
+    [ServerRpc]
+    private void DeliverSuccesfullRecipeServerRpc(int waitingRecipeIndex)
+    {
+        DeliverSuccesfullRecipeClientRpc(waitingRecipeIndex);
+    }
+    [ClientRpc]
+    private void DeliverSuccesfullRecipeClientRpc(int waitingRecipeIndex)
+    {
+        succesfullDelivery++;
+        waitingRecipes.RemoveAt(waitingRecipeIndex);
+        OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
+        OnRecipeSucces?.Invoke(this, EventArgs.Empty);
+        
+    }
+    [ServerRpc]
+    private void DeliverFailedRecipeServerRpc()
+    {
+        DeliverFailedRecipeClientRpc();
+    }
+    [ClientRpc]
+    private void DeliverFailedRecipeClientRpc()
+    {
+        OnRecipeFailed?.Invoke(this, EventArgs.Empty);
+    }
     public List<RecipeSO> GetWaitingRecipesList()
     {
         return waitingRecipes;
