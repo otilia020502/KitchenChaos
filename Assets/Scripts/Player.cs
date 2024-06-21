@@ -3,8 +3,9 @@ using System;
 using Unity.Netcode;
 public class Player : NetworkBehaviour,IKitchenObjectParent
 {
-    
-    //public static Player Instance { get; private set; }
+
+    public static event EventHandler OnAnyPlayerSpawned;
+    public static Player LocalInstance { get; private set; }
 
     public event EventHandler OnPickedSomething;
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged ;
@@ -23,16 +24,17 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
     private BaseCounter _selectedCounter;
     [SerializeField] private Transform kitchenObjectHoldPoint;
     private KitchenObject kitchenObject;
-
-    private void Awake()//happens before start, setez eu
+    
+    public override void OnNetworkSpawn()
     {
+        if (LocalInstance == null)
+        {
+            LocalInstance = this;
+        }
         
-        //    Instance = this;
-            
-      
-        
-        
+        OnAnyPlayerSpawned?.Invoke(this, EventArgs.Empty);
     }
+
     private void Start()//iau de la altii
     {
         GameInput.Instance.OnInteractAction += GameInput_OnInteraction;
@@ -50,6 +52,10 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
         }
         
 
+    }
+    new public static void ResetStaticData()
+    {
+        OnAnyPlayerSpawned = null;
     }
     private void GameInput_OnInteraction(object sender, System.EventArgs e)
     {

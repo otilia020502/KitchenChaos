@@ -95,7 +95,7 @@ public class DeliveryManager :NetworkBehaviour
         
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership =false)]
     private void DeliverSuccesfullRecipeServerRpc(int waitingRecipeIndex)
     {
         DeliverSuccesfullRecipeClientRpc(waitingRecipeIndex);
@@ -109,7 +109,7 @@ public class DeliveryManager :NetworkBehaviour
         OnRecipeSucces?.Invoke(this, EventArgs.Empty);
         
     }
-    [ServerRpc]
+    [ServerRpc(RequireOwnership =false)]
     private void DeliverFailedRecipeServerRpc()
     {
         DeliverFailedRecipeClientRpc();

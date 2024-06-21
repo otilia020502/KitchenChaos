@@ -10,6 +10,7 @@ namespace UI
             CuttingCounter.ResetStaticData();
             BaseCounter.ResetStaticData();
             TrashCounter.ResetStaticData();
+            Player.ResetStaticData();
         }
     }
 }
