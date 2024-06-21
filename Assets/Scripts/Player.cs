@@ -14,7 +14,7 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
         public BaseCounter SelectedCounter;
     }
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private GameInput gameInput;
+    
     private bool _isWalking; [SerializeField] private float playerSize = .7f;//
     [SerializeField]float rotateSpeed = 10f;
     [SerializeField]float playerRadius = .7f;
