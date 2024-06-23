@@ -14,7 +14,16 @@ public class PlatekitchenObject : KitchenObject
     }
 
     [SerializeField] private List<KitchenObjectSo> validKit;
-    private List<KitchenObjectSo> _kitchenObjectSoList= new List<KitchenObjectSo>();
+    
+    
+    private List<KitchenObjectSo> _kitchenObjectSoList;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _kitchenObjectSoList= new List<KitchenObjectSo>();
+    }
+
     public bool TryAddIngredient(KitchenObjectSo kitchenObjectSo)
     {
         if (!validKit.Contains(kitchenObjectSo))
