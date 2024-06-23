@@ -5,6 +5,7 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
 {
 
     public static event EventHandler OnAnyPlayerSpawned;
+    public static event EventHandler OnAnyPickedSomething;
     public static Player LocalInstance { get; private set; }
 
     public event EventHandler OnPickedSomething;
@@ -32,7 +33,7 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
                 LocalInstance = this;
             
         }
-            OnAnyPlayerSpawned?.Invoke(this, EventArgs.Empty);
+        OnAnyPlayerSpawned?.Invoke(this, EventArgs.Empty);
             
         
         
@@ -56,7 +57,7 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
         
 
     }
-    new public static void ResetStaticData()
+    public static void ResetStaticData()
     {
         OnAnyPlayerSpawned = null;
     }
@@ -95,6 +96,7 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
         if (kitchenObject != null)
         {
             OnPickedSomething?.Invoke(this, EventArgs.Empty);
+            OnAnyPickedSomething?.Invoke(this, EventArgs.Empty);
         }
     }
 
