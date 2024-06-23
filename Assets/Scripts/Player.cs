@@ -215,4 +215,9 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
         platekitchenObject = null;
         return false;
     }
+
+    public NetworkObject GetNetworkObject()
+    {
+        return NetworkObject;
+    }
 }

@@ -82,16 +82,16 @@ public class GameInput : MonoBehaviour
         {
             case Binding.MoveUp:
                 return _playerInputActions.Player.Move.bindings[1].ToDisplayString();
-                break;
+             
             case Binding.MoveDown:
                 return _playerInputActions.Player.Move.bindings[2].ToDisplayString();
-                break;
+               
             case Binding.MoveLeft:
                 return _playerInputActions.Player.Move.bindings[3].ToDisplayString();
-                break;
+                
             case Binding.MoveRight:
                 return _playerInputActions.Player.Move.bindings[4].ToDisplayString();
-                break;
+                
             case Binding.Interact:
                 return _playerInputActions.Player.Interact.bindings[0].ToDisplayString();
             case Binding.InteractAlternate:
