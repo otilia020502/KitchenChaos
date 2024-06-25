@@ -17,7 +17,7 @@ namespace Counters
             {
                DeliveryManager.Instance.DeliverRecipe(platekitchenObject);
                
-               platekitchenObject.DestorySelf();
+               KitchenObject.DestroyKitchenObject(player.GetKitchenObject());
             }
         }
     }
