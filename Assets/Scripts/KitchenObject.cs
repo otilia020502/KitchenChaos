@@ -51,8 +51,8 @@ public class KitchenObject : NetworkBehaviour
       this.kitchenObjectParent = kitchenObjectParent;
       if (kitchenObjectParent.HasKitchenObject())
       {
-         Debug.LogError("Counter already has object"+ kitchenObjectParent.GetNetworkObject().name);
-  
+         Debug.LogError("Counter already has object"+ kitchenObjectParent.GetKitchenObject().name);
+         return;
       }
       kitchenObjectParent.SetKitchenObject(this);
       
@@ -65,7 +65,7 @@ public class KitchenObject : NetworkBehaviour
 
    public void DestorySelf()
    {
-      kitchenObjectParent.ClearKitchenObject();
+      //kitchenObjectParent.ClearKitchenObject();
       Destroy(gameObject);
    }
 
@@ -86,6 +86,11 @@ public class KitchenObject : NetworkBehaviour
    public static void SpawnKitchenObject(KitchenObjectSo kitchenObjectSO, IKitchenObjectParent kitchenObjectParent)
    {
       KitchenGameMultiplayer.Instance.SpawnKitchenObject(kitchenObjectSO, kitchenObjectParent);
+      
+   }
+   public static void DestroyKitchenObject(KitchenObject kitchenObject)
+   {
+      KitchenGameMultiplayer.Instance.DestroyKitchenObject(kitchenObject);
       
    }
 }

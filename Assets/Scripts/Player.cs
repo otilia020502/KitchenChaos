@@ -42,6 +42,7 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
 
     private void Start()//iau de la altii
     {
+        GameInput.Instance.OnInteractAction -= GameInput_OnInteraction;
         GameInput.Instance.OnInteractAction += GameInput_OnInteraction;
         GameInput.Instance.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
     }
@@ -70,6 +71,7 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
         }
         if (_selectedCounter != null)
         {
+            Debug.Log("interact called");
             _selectedCounter.Interact(this);
         }
         
@@ -217,7 +219,7 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
         return false;
     }
 
-    public NetworkObject GetNetworkObject()
+    public NetworkObjectReference GetNetworkObject()
     {
         return NetworkObject;
     }

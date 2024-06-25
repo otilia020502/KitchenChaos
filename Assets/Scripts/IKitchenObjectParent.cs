@@ -18,5 +18,5 @@ public interface IKitchenObjectParent
 
     public bool HasKitchenObject();
 
-    public NetworkObject GetNetworkObject();
+    public NetworkObjectReference GetNetworkObject();
 }
