@@ -5,7 +5,7 @@ using UnityEngine;
 public class ClearCounter : BaseCounter
 {
 
-    [SerializeField] private KitchenObjectSo  kitchenObjectSO;
+    //[SerializeField] private KitchenObjectSo  kitchenObjectSO;
   
     
 

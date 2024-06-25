@@ -37,9 +37,9 @@ public class KitchenObject : NetworkBehaviour
    }
 
    [ClientRpc]
-   private void SetKitchenObjectParentClientRpc(NetworkObjectReference kitchenObjectParentnetworkObjectReference)
+   private void SetKitchenObjectParentClientRpc(NetworkObjectReference kitchenObjectParentNetworkObjectReference)
    {
-      kitchenObjectParentnetworkObjectReference.TryGet(out NetworkObject kitchenObjectParentNetworkObject);
+      kitchenObjectParentNetworkObjectReference.TryGet(out NetworkObject kitchenObjectParentNetworkObject);
       IKitchenObjectParent kitchenObjectParent = kitchenObjectParentNetworkObject.GetComponent<IKitchenObjectParent>();
       
       if (this.kitchenObjectParent != null)
@@ -47,10 +47,12 @@ public class KitchenObject : NetworkBehaviour
          this.kitchenObjectParent.ClearKitchenObject();
       }
       
+      
       this.kitchenObjectParent = kitchenObjectParent;
       if (kitchenObjectParent.HasKitchenObject())
       {
-         Debug.LogError("Counter already has object");
+         Debug.LogError("Counter already has object"+ kitchenObjectParent.GetNetworkObject().name);
+  
       }
       kitchenObjectParent.SetKitchenObject(this);
       

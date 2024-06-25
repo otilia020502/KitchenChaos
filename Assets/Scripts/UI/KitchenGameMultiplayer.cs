@@ -45,4 +45,16 @@ public class KitchenGameMultiplayer : NetworkBehaviour
     {
         return kitchenObjectListSo.KitchenObjectSOList[kitchenObjectSoIndex];
     }
+
+    public void DestroyKitchenObject(KitchenObject kitchenObject)
+    {
+        
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void DestroyKitchenObjectServerRpc(NetworkObjectReference kitchenObjectReference)
+    {
+        
+    }
+    
 }
