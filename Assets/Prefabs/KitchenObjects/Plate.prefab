@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631b7e3efef19544596fcc133e116c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kitchenObjectSo: {fileID: 11400000, guid: 314574b123e71404d9ff09d876a22b84, type: 2}
+  kitchenObjectSO: {fileID: 11400000, guid: 314574b123e71404d9ff09d876a22b84, type: 2}
   validKit:
   - {fileID: 11400000, guid: 3bed61b3bf851b849b52b6f8cc0872b8, type: 2}
   - {fileID: 11400000, guid: e28549a456ed15d4e98a444302f4e46a, type: 2}
