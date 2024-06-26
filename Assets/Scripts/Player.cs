@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 using Counters;
 using Unity.Netcode;
 public class Player : NetworkBehaviour,IKitchenObjectParent
@@ -18,10 +19,13 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
     }
     [SerializeField] private float moveSpeed = 5f;
     
-    private bool _isWalking; [SerializeField] private float playerSize = .7f;//
+    private bool _isWalking; 
+    [SerializeField] private float playerSize = .7f;//
     [SerializeField]float rotateSpeed = 10f;
     [SerializeField]float playerRadius = .7f;
     [SerializeField] private LayerMask countersLayerMask;
+    [SerializeField] private LayerMask collisionsLayerMask;
+    [SerializeField] private List<Vector3> spawnPositionList;
     private Vector3 _lastInteractionDir;
     private BaseCounter _selectedCounter;
     [SerializeField] private Transform kitchenObjectHoldPoint;
@@ -34,6 +38,8 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
                 LocalInstance = this;
             
         }
+
+        transform.position = spawnPositionList[(int)OwnerClientId];
         OnAnyPlayerSpawned?.Invoke(this, EventArgs.Empty);
             
         
@@ -165,13 +171,14 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
         
         var moveDistance = Time.deltaTime* moveSpeed;
         var step = moveDir * moveDistance;
-        bool canMove= Physics.CapsuleCast(transform.position, transform.position+Vector3.up * playerHeight, 
-            playerRadius,moveDir, moveDistance, countersLayerMask)==false;
+        bool canMove= Physics.BoxCast(transform.position, Vector3.one * playerRadius,
+            moveDir,Quaternion.identity, moveDistance, collisionsLayerMask)==false;
         
         if (!canMove)
         {//try to move on x axis
             var moveDirX = new Vector3(moveDir.x, 0, 0);
-            bool canMoveX= (moveDir.x <-.5f || moveDir.x>.5f) && Physics.CapsuleCast(transform.position, transform.position+Vector3.up * playerHeight, playerRadius,moveDirX, moveDistance)==false;
+            bool canMoveX= (moveDir.x <-.5f || moveDir.x>.5f) && Physics.BoxCast(transform.position, Vector3.one * playerRadius,
+                moveDirX,Quaternion.identity, moveDistance, collisionsLayerMask)==false;
             if (canMoveX)
             {
                 canMove = true;
@@ -181,7 +188,8 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
             if (canMove == false)
             {//try to move on z axis
                 var moveDirZ = new Vector3(0, 0, moveDir.z);
-                bool canMoveZ= (moveDir.z <-.5f || moveDir.z>.5f) &&Physics.CapsuleCast(transform.position, transform.position+Vector3.up * playerHeight, playerRadius,moveDirZ, moveDistance)==false;
+                bool canMoveZ= (moveDir.z <-.5f || moveDir.z>.5f) &&Physics.BoxCast(transform.position, Vector3.one * playerRadius,
+                    moveDirZ,Quaternion.identity, moveDistance, collisionsLayerMask)==false;
                 if (canMoveZ)
                 {
                     canMove = true;
