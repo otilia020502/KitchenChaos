@@ -24,12 +24,16 @@ namespace Counters
             if(!HasKitchenObject())
             {
                 //there is no kitchenobject here
+                Debug.Log("no object ");
+                Debug.Log(player.HasKitchenObject());
                 if (player.HasKitchenObject())
                 {
                     //player is carrying something
+                    Debug.Log(HasRecipeWithInput(player.GetKitchenObject().GetKitchenObjectSO()));
                     if (HasRecipeWithInput(player.GetKitchenObject().GetKitchenObjectSO()))
                     {//player carrying something that can be cut
                         KitchenObject kitchenObject = player.GetKitchenObject();
+                        Debug.Log("there is"+ kitchenObject.name) ;
                         kitchenObject.SetKitchenObjectParent(this);
                         
                         InteractLogicPlaceObjectOnCounterServerRpc();
@@ -39,6 +43,7 @@ namespace Counters
                 else
                 {
                     //player not carrying anything
+                    Debug.Log("no object in hand");
                 }
             }
             else
@@ -57,7 +62,7 @@ namespace Counters
                         // player is holding a plate
                         if (platekitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
                         {
-                            GetKitchenObject().DestroySelf();
+                            KitchenObject.DestroyKitchenObject(GetKitchenObject());
                         }
                     
                     }
