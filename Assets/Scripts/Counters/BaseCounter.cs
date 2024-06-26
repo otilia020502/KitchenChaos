@@ -51,7 +51,7 @@ namespace Counters
             return kitchenObject != null;
         }
     
-        public NetworkObjectReference GetNetworkObject()
+        public NetworkObject GetNetworkObject()
         {
             return NetworkObject;
         }

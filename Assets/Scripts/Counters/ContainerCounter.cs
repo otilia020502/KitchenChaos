@@ -10,7 +10,7 @@ public class ContainerCounter : BaseCounter
     public event EventHandler OnPlayerGrabbedObject;
     
     [SerializeField] private KitchenObjectSo  kitchenObjectSO;
-
+    //private Player lastPlayerInteract;
     
     public override void Interact(Player player)
     {
@@ -18,9 +18,13 @@ public class ContainerCounter : BaseCounter
         {
             //player is not carrying anything
             Debug.Log(player.HasKitchenObject());
+            if (!IsOwner)
+            {
+                return;
+            }
+
             KitchenObject.SpawnKitchenObject(kitchenObjectSO, player);
-        
-           InteractLogicServerRpc();
+            InteractLogicServerRpc();
         }
        
     }
@@ -33,7 +37,8 @@ public class ContainerCounter : BaseCounter
     
     [ClientRpc]
     private void InteractLogicClientRpc()
-    {
+    { 
+        
        OnPlayerGrabbedObject?.Invoke(this,EventArgs.Empty);
     }
 }

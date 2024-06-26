@@ -101,9 +101,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2661474184655639746, guid: 6c84a7badca5de14bba924420104bb2b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1810494172572086287}
-    - targetCorrespondingSourceObject: {fileID: 2661474184655639746, guid: 6c84a7badca5de14bba924420104bb2b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9215730931895027768}
     - targetCorrespondingSourceObject: {fileID: 672762059736953328, guid: 6c84a7badca5de14bba924420104bb2b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1249892492}
@@ -133,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0bd042abf4ea2c4fac1b5b9e6f7175c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 9215730931895027768}
+  player: {fileID: 0}
 --- !u!114 &9212739316127970117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,34 +188,9 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
---- !u!114 &9215730931895027768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8579868468646140048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 217e8b0ddfcca424a9b0fcaf742b27fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  playerSize: 0.7
-  rotateSpeed: 10
-  playerRadius: 0.7
-  countersLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  kitchenObjectHoldPoint: {fileID: 8579868469695386993}
 --- !u!4 &8579868468646140054 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2661474184655639748, guid: 6c84a7badca5de14bba924420104bb2b, type: 3}
-  m_PrefabInstance: {fileID: 6052455550434659410}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8579868469695386993 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2661474183623170339, guid: 6c84a7badca5de14bba924420104bb2b, type: 3}
   m_PrefabInstance: {fileID: 6052455550434659410}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8579868470343807732

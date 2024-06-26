@@ -35,9 +35,9 @@ public class SelectedCounterVisual : MonoBehaviour
       
    }
 
-   private void OnSelectedCounterChanged(object sender, Player.OnSelectedCounterChangedEventArgs e)
+   private void OnSelectedCounterChanged(object sender, Player.OnSelectedCounterChangedEventArgs onSelectedCounterChangedEventArgs )
    {
-      if (e.SelectedCounter == currentCounter)
+      if (onSelectedCounterChangedEventArgs.SelectedCounter == currentCounter)
       {
          Show();
       }

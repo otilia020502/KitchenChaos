@@ -13,11 +13,15 @@ namespace Counters
 
         public override void Interact(Player player)
         {
-            if (player.TryGetPlateObject(out PlatekitchenObject platekitchenObject))
+            if (player.HasKitchenObject())
             {
-               DeliveryManager.Instance.DeliverRecipe(platekitchenObject);
-               
-               KitchenObject.DestroyKitchenObject(player.GetKitchenObject());
+                if (player.GetKitchenObject().TryGetPlate(out PlatekitchenObject plateKitchenObject))
+                {
+                    DeliveryManager.Instance.DeliverRecipe(plateKitchenObject);
+
+                    KitchenObject.DestroyKitchenObject(player.GetKitchenObject());
+                }
+
             }
         }
     }

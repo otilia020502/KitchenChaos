@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using System;
+using Unity.Netcode;
 using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
@@ -68,6 +69,8 @@ public class GameInput : MonoBehaviour
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
+        
+        
         OnInteractAction?.Invoke(this,EventArgs.Empty);
     }
     public Vector2 GetMovementVectorNormalized()
