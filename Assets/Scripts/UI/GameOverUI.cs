@@ -7,6 +7,7 @@ using UnityEngine;
 public class GameOverUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI deliveredRecipesText;
+        // i dont have in awake networkmanager.singleton.shutdown, because i dont have a button to load the scene
     private void Start()
     {
         KitchenGameManager.Instance.OnStateChanged += GameManager_OnStateChanged;
