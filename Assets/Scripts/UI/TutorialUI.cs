@@ -51,8 +51,12 @@ public class TutorialUI : MonoBehaviour
 
     private void KitchenGameManager_OnPlayerReady(object sender, EventArgs e)
     {
-        Hide(this, EventArgs.Empty);
-        Debug.Log("hide");
+        if (KitchenGameManager.Instance.IsLocalPlayerReady())
+        {
+            Hide(this, EventArgs.Empty);
+        }
+        // Hide(this, EventArgs.Empty);
+        // Debug.Log("hide");
     }
 
     private void GameInput_OnBindingRebind(object sender, EventArgs e)
