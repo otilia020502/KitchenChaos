@@ -26,7 +26,7 @@ public class KitchenGameMultiplayer : NetworkBehaviour
 
     private void NetworkManager_ConnectionApprovalCallback(NetworkManager.ConnectionApprovalRequest connectionApprovalRequest, NetworkManager.ConnectionApprovalResponse connectionApprovalResponse)
     {
-        connectionApprovalResponse.Approved = true;
+        
         if (SceneManager.GetActiveScene().name != Loader.Scene.MyCharacterSelectScene.ToString())
         {
             connectionApprovalResponse.Approved = false;
@@ -52,9 +52,9 @@ public class KitchenGameMultiplayer : NetworkBehaviour
         NetworkManager.Singleton.StartClient();
     }
 
-    private void NetworkManager_OnClientDisconnectCallback(ulong obj)
+    private void NetworkManager_OnClientDisconnectCallback(ulong clientId)
     {
-        throw new NotImplementedException();
+        OnFailedToJoinGame?.Invoke(this,  EventArgs.Empty);
     }
 
     public void SpawnKitchenObject(KitchenObjectSo kitchenObjectSO,

@@ -13,7 +13,7 @@ namespace UI
         {
             playButton.onClick.AddListener(() =>
             {
-                Loader.Load(Loader.Scene.GameScene);
+                Loader.Load(Loader.Scene.MyLobbyScene);
             });
             quitButton.onClick.AddListener(() =>
             {

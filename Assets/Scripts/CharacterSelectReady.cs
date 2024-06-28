@@ -14,8 +14,9 @@ public class CharacterSelectReady :NetworkBehaviour
     
     private void Awake()
     {
-        playerReadyDictionary = new Dictionary<ulong, bool>();
         Instance = this;
+        playerReadyDictionary = new Dictionary<ulong, bool>();
+        
     }
 
     public void SetPlayerReady()
