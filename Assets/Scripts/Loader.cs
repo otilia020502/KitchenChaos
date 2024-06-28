@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public static class Loader
 {
     public enum Scene{
-        MenuScene,
-        SampleScene,
-        FloorsScene,
+        MyCharacterSelectScene,
         LoadingScene,
+        MyMenuScene,
+        GameScene,
+        FloorsScene,
+        
+        MyLobbyScene,
+       
             
     }
     private static Scene targetScene;
@@ -23,6 +28,10 @@ public static class Loader
         
     }
 
+    public static void LoadNetwork(Scene targetScene)
+    {
+        NetworkManager.Singleton.SceneManager.LoadScene(Loader.targetScene.ToString(), LoadSceneMode.Single);
+    }
     public static void LoaderCallback()
     {
         SceneManager.LoadScene(targetScene.ToString());
