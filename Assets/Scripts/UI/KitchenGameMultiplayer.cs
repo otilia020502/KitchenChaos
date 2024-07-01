@@ -10,7 +10,7 @@ public class KitchenGameMultiplayer : NetworkBehaviour
     public event EventHandler OnTryingToJoinGame;
     public event EventHandler OnFailedToJoinGame;
     [SerializeField] private KitchenObjectListSO kitchenObjectListSo;
-    private const int MAX_PLAYER_COUNT = 4;
+    public const int MAX_PLAYER_COUNT = 4;
     private void Awake()
     {
         Instance = this;
