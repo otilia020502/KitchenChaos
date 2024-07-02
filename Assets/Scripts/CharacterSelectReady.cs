@@ -44,6 +44,7 @@ public class CharacterSelectReady :NetworkBehaviour
 
         if (allClientsReady) {
             Debug.Log("all clients ready");
+            KitchenGameLobby.Instance.DeleteLobby();
             Loader.LoadNetwork(Loader.Scene.GameScene);
         }
     }

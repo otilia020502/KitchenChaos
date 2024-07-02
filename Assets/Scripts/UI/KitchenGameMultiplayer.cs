@@ -15,6 +15,8 @@ public class KitchenGameMultiplayer : NetworkBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        
+        
     }
 
     public void StartHost()
